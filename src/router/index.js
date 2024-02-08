@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * router/index.ts
  *
@@ -11,7 +12,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 const routes = [
   {
     path: '/',
-    component: () => import('@/layouts/default.vue'),
+    component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
         path: '',
@@ -22,7 +23,7 @@ const routes = [
   },
   {
     path: '/about',
-    component: () => import('@/layouts/default.vue'),
+    component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
         path: '',

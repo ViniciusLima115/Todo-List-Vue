@@ -1,15 +1,18 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div>
-
-
     <v-list lines="three" select-strategy="classic">
       <v-list-subheader>General</v-list-subheader>
 
-      <v-list-item v-for="(task, index) in taskStore.tasks" :key="index" :value="index">
-        <template v-slot:prepend="{ isActive }">
+      <v-list-item
+        v-for="(task, index) in taskStore.tasks"
+        :key="index"
+        :value="index"
+        @click="taskStore.toggleDoneTask(index)"
+      >
+        <template v-slot:prepend="{}">
           <v-list-item-action start>
-            <v-checkbox-btn :model-value="isActive"></v-checkbox-btn>
+            <v-checkbox-btn :model-value="task.done"></v-checkbox-btn>
           </v-list-item-action>
         </template>
 
@@ -30,16 +33,10 @@
               ></v-btn>
             </template>
             <v-list>
-              <v-list-item
-              value="1"
-              @click="taskStore.toggleEdit(index)"
-              >
+              <v-list-item value="1" @click="taskStore.toggleEdit(index)">
                 <v-list-item-title>Editar</v-list-item-title>
               </v-list-item>
-              <v-list-item
-              value="2"
-              @click="taskStore.toggleDelete(index)"
-              >
+              <v-list-item value="2" @click="taskStore.toggleDelete(index)">
                 <v-list-item-title>Deletar</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -48,20 +45,15 @@
       </v-list-item>
     </v-list>
 
-    <DialogTaskFields
-    :task="taskStore.tasks[taskStore.indexTaskSelected]"
-
-    />
-    <DialogDelete/>
+    <DialogTaskFields :task="taskStore.tasks[taskStore.indexTaskSelected]" />
+    <DialogDelete />
   </div>
-
-
 </template>
 
 <script setup>
-  import DialogTaskFields from './DialogTaskFields.vue';
-  import DialogDelete from './DialogDelete.vue';
-  import { useTaskStore } from '@/store/task';
+import DialogTaskFields from "./dialogs/DialogTaskFields.vue";
+import DialogDelete from "./dialogs/DialogDelete.vue";
+import { useTaskStore } from "@/store/task";
 
-  const taskStore = useTaskStore();
+const taskStore = useTaskStore();
 </script>

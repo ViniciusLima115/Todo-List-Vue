@@ -1,29 +1,17 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="taskStore.showDialogDelete"
-      persistent
-      width="auto"
-    >
+    <v-dialog v-model="taskStore.showDialogDelete" persistent width="auto">
       <v-card>
         <v-card-title class="text-h5">
           Are you sure do you want to delete this task?
         </v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="green-darken-1"
-            variant="text"
-            @click="taskStore.toggleDelete()"
-          >
+          <v-btn color="red-darken-1" variant="elevated" @click="taskStore.toggleDelete()">
             No
           </v-btn>
-          <v-btn
-            color="green-darken-1"
-            variant="text"
-            @click="taskStore.deleteTask()"
-          >
+          <v-btn color="red-darken-1" variant="outlined" @click="taskStore.deleteTask()">
             Yes
           </v-btn>
         </v-card-actions>
@@ -35,6 +23,6 @@
 <script setup>
 import { useTaskStore } from '@/store/task';
 
-  const taskStore = useTaskStore();
+const taskStore = useTaskStore();
 
 </script>
