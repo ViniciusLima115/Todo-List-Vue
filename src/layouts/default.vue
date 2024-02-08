@@ -1,42 +1,34 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer">
-      <v-list>
-        <v-list-item
-          prepend-avatar="https://avatars.githubusercontent.com/u/83377988?v=4"
-          title="Vinicius"
-          subtitle="Todo-list"
-        >
-        </v-list-item>
-      </v-list>
+      <v-img src="https://picsum.photos/1920/1080?random"
+        gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)" height="80" cover class="pt-2">
+        <v-list>
+          <v-list-item prepend-avatar="https://avatars.githubusercontent.com/u/83377988?v=4" title="Vinicius"
+            subtitle="Todo-list">
+          </v-list-item>
+        </v-list>
+      </v-img>
 
       <v-divider></v-divider>
 
-      <v-list :lines="false"
-      density="compact"
-      nav
-      >
-      <router-link
-        v-for="(item, i) in items"
-        :key="i"
-        :to="item.to"
-        >
-        <v-list-item
-          :value="item"
-          color="primary"
-        >
-          <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
-          </template>
+      <v-list :lines="false" density="compact" nav>
+        <router-link v-for="(item, i) in items" :key="i" :to="item.to">
+          <v-list-item :value="item" color="primary">
+            <template v-slot:prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
 
-          <v-list-item-title :textContent="item.text"></v-list-item-title>
-        </v-list-item>
-
-      </router-link>
+            <v-list-item-title :textContent="item.text"></v-list-item-title>
+          </v-list-item>
+        </router-link>
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar>
+    <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random" density="prominent">
+      <template v-slot:image>
+        <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
+      </template>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Todo-List</v-app-bar-title>
@@ -60,9 +52,8 @@ const items = [
 </script>
 
 <style scoped>
-  a{
-    text-decoration: none;
-    color:#505050
-  }
-
+a {
+  text-decoration: none;
+  color: #505050;
+}
 </style>

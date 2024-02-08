@@ -3,14 +3,7 @@ import { defineStore } from "pinia";
 export const useTaskStore = defineStore('task',{
   state:() => ({
     tasks:[
-      {
-        title: "Estudar Vue",
-        description: "Estudar Vue com Vuetify",
-      },
-      {
-        title: "Ler a Documentacao",
-        description: "ler",
-      },
+
     ],
     titleTaskCreating: "",
     showDialogDelete: false,
@@ -24,10 +17,12 @@ export const useTaskStore = defineStore('task',{
         title: this.titleTaskCreating
       })
       this.titleTaskCreating = ""
+      this.saveLocalData();
     },
     deleteTask(){
      this.tasks.splice(this.indexTaskSelected,1)
      this.toggleDelete();
+     this.saveLocalData();
    },
     toggleDelete(index){
       this.showDialogDelete = !this.showDialogDelete
@@ -38,6 +33,17 @@ export const useTaskStore = defineStore('task',{
       this.showDialogTaskFields = !this.showDialogTaskFields
       if(index != null)
         this.indexTaskSelected = index
+        this.saveLocalData();
      },
+     saveLocalData(){
+      localStorage.setItem('tasks',
+          JSON.stringify(this.tasks))
+     },
+     getTasks(){
+      let itens = localStorage.getItem('tasks')
+
+      if(itens)
+        this.tasks = JSON.parse(itens)
+     }
   }
 })
