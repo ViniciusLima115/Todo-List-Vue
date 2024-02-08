@@ -2,7 +2,7 @@
 <template>
   <v-row justify="center">
     <v-dialog
-      v-model="props.dialog"
+      v-model="taskStore.showDialogTaskFields"
       persistent
       min-width="400"
       max-width="600"
@@ -24,7 +24,7 @@
           <v-btn
             color="green-darken-1"
             variant="text"
-            @click="$emit('toggle')"
+            @click="taskStore.toggleEdit()"
           >
             Ok
           </v-btn>
@@ -36,8 +36,10 @@
 </template>
 <script setup>
   import { defineProps} from 'vue'
+  import { useTaskStore } from '@/store/task';
+
+  const taskStore = useTaskStore();
   const props = defineProps({
-    dialog: Boolean,
     task: Object
   })
 </script>
