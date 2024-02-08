@@ -2,7 +2,7 @@
 <template>
   <div>
     <v-list lines="three" select-strategy="classic">
-      <v-list-subheader>General</v-list-subheader>
+      <v-list-subheader>Tasks</v-list-subheader>
 
       <v-list-item
         v-for="(task, index) in taskStore.tasks"
